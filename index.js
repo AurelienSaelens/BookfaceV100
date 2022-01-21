@@ -56,11 +56,11 @@ if(process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
   })
 } else {
-  app.get('/index.js', (req, res) => {
+  app.get('/', (req, res) => {
     res.send("api running");
   })
 }
 
-app.listen(8800, () => {
+app.listen(process.env.PORT || 8800, () => {
   console.log("Backend server is running!");
 });
