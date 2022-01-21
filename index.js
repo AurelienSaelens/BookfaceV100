@@ -45,9 +45,9 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
   }
 });
 
-app.use("/api/auth", authRoute);
-app.use("/api/users", userRoute);
-app.use("/api/posts", postRoute);
+app.use("/api/routes/auth", authRoute);
+app.use("/api/routes/users", userRoute);
+app.use("/api/routes/posts", postRoute);
 
 if(process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(__dirname, '/client/build')));
