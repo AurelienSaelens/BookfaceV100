@@ -49,6 +49,18 @@ app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 
+if(process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, '/client/build')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+  })
+} else {
+  app.get('/', (req, res) => {
+    res.send("api running");
+  })
+}
+
 app.listen(8800, () => {
   console.log("Backend server is running!");
 });
